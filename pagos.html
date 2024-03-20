@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <img onclick="window.location.href='index.html'" src="images/LogoCodex.png" alt="">
+        <div class="navigation">
+            <img id="menu-btn" src="images/menu.png" alt="">
+        </div>
+    </nav>
+    <section id="contact">
+        <div class="form" id="form">
+            <form method="post" action="" class="pagos-form">
+                <h4 class="tit">INFORMAR UN PAGO</h4>
+                <div class="form-row">
+                    <input id="name_1" type="text" name="Nombre" placeholder="Nombre" required>
+                    <input id="name_2" type="text" name="Apellido" placeholder="Apellido" required>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper" style="margin-bottom: 20px;">
+                        <h4 class="tit">Metodo de pago</h4>
+                        <input type="radio" id="opcion2" name="Pago" class="toggle-radio" value="efectivo" required>
+                        <label for="opcion2">Efectivo</label>
+                        <input type="radio" id="opcion1" name="Pago" class="toggle-radio" value="transferencia" required>
+                        <label for="opcion1">transferencia</label>
+                        <input type="radio" id="opcion-default" name="Pago" value="" style="display: none;" checked>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="curso" name="Curso" required class="form-input">
+                            <option value="" disabled selected hidden>Curso</option>
+                            <option value="Python 1">Python 1</option>
+                            <option value="Python 2">Python 2</option>
+                            <option value="Desarrollo Web 1">Desarrollo Web 1</option>
+                            <option value="Desarrollo Web 2">Desarrollo Web 2</option>
+                            <option value="Mecanica Automotor">Mecanica Automotor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="mes" name="Mes" required class="form-input">
+                            <option value="" disabled selected hidden>Cantidad de meses</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper" style="margin-bottom: 20px;">
+                        <h4 class="tit">Inscripcion</h4>
+                        <input type="radio" id="opcion3" name="Inscripcion" class="toggle-radio" value="Si" required>
+                        <label for="opcion3">Si</label>
+                        <input type="radio" id="opcion4" name="Inscripcion" class="toggle-radio" value="No" required>
+                        <label for="opcion4">No</label>
+                        <input type="radio" id="opcion-default2" name="Inscripcion" value="" style="display: none;" checked>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="file-input-wrapper">
+                        <label class="file-input-labell" for="">Comprobante:</label>
+                        <label class="file-input-button" for="imagenes">Seleccionar archivos</label>
+                        <input type="file" id="imagenes" name="Imagenes" accept="image/*" multiple required>
+                    </div>
+                    <div class="file-input-wrapper-small">
+                        <small>Solo se permiten archivos de imagen</small>
+                    </div>
+                </div>
+                <div class="form-coll">
+                    <button id="enviar" type="submit" value="Submit">Informar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+
+        $(document).ready(function() {
+                $('#imagenes').change(function() {
+                    var files = $(this).prop('files');
+                    var displayDiv = $('#file-name-display');
+
+                    displayDiv.empty(); // Limpiar cualquier nombre de archivo anterior
+
+                    for (var i = 0; i < files.length; i++) {
+                        displayDiv.append('<p>' + files[i].name + '</p>'); // Agregar el nombre del archivo al div
+                    }
+                });
+            });
+        $(document).ready(function() {
+                $('.pagos-form').submit(function(event) {
+                    var nombre = $('#name_1').val();
+                    var apellido = $('#name_2').val();
+                    var metodoPago =  $('input[name="Pago"]:checked').val();
+                    var curso = $('#curso').val();
+                    var mes = $('#mes').val();
+                    var inscripcion = $('input[name="Inscripcion"]:checked').val();
+                    var imagenes = $('#imagenes').prop('files');
+
+                    if (nombre === '' || apellido === '' || metodoPago === undefined || curso === '' || mes === '' || inscripcion === undefined || imagenes.length === 0) {
+                        event.preventDefault();
+                        alert('Por favor complete todos los campos y seleccione al menos una imagen y una opción de inscripción.');
+                    }
+                });
+            });
+
+        $(document).ready(function () {
+            $("#metodoPago").change(function () {
+                var selectedMethod = $(this).val();
+                var comprobanteField = $("#imagenes");
+                comprobanteField.prop("required", selectedMethod === "transferencia");
+            });
+        });
+    </script>
+</body>
+
+</html>

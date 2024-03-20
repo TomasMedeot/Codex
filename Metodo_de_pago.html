@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <img onclick="window.location.href='index.html'" src="images/LogoCodex.png" alt="">
+        <div class="navigation">
+            <img id="menu-btn" src="images/menu.png" alt="">
+        </div>
+    </nav>
+    <section id="contact">
+        <div class="form custom-form" id="form">
+            <form method="post" action="" class="inscrip-form">
+                <h4 class="tit">METODO DE PAGO</h4>
+                <div class="formm">
+                    <button class="enviar" type="button" value="DebitoAutomatico">Débito Automático</button>
+                    <button class="enviar" type="button" value="financiacion">Tarjeta De Crédito/Debito</button>
+                    <button class="enviar" type="button" value="transferencia">Transferencia</button>
+                    <button class="enviar" type="button" value="efectivo">Efectivo</button>
+                </div>
+            </form>
+        </div>
+        <div class="info-div" id="infoDiv">
+            <div class="financiacion"><p>Esto es pagar mediante Tarjeta de crédito/Debito</p></div>
+            <div class="DebitoAutomatico"><p>Esto es pagar mediante Debito Automatico</p></div>
+            <div class="transferencia"><p>Esto es pagar mediante transferencia</p></div>
+            <div class="efectivo"><p>Esto es pagar mediante efectivo</p></div>
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function () {
+        // Oculta todos los divs de información al cargar la página
+        $('.info-div div').hide();
+
+        // Maneja el clic en los botones
+        $('.enviar').click(function () {
+            // Oculta todos los divs de información
+            $('.info-div div').hide();
+
+            // Obtiene el valor del botón clicado
+            var value = $(this).val();
+
+            // Muestra el div correspondiente al valor del botón
+            $('.' + value).show();
+        });
+    });
+</script>
+</html>

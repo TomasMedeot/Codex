@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <img onclick="window.location.href='index.html'" src="images/LogoCodex.png" alt="">
+        <div class="navigation">
+            <img id="menu-btn" src="images/menu.png" alt="">
+        </div>
+    </nav>
+
+    <section id="contact">
+        <div class="form" id="form">
+            <form method="post" action="" class="inscrip-form">
+                <h4 class="tit">INSCRIPCIÓN</h4>
+                <div class="form-row">
+                    <input id="name_1" type="text" name="Nombre" placeholder="Nombre" required>
+                    <input id="name_2" type="text" name="Apellido" placeholder="Apellido" required>
+                </div>
+                <div class="form-row">
+                    <input id="document" type="text" name="Documento" placeholder="DNI" required>
+                    <input id="email" type="email" name="Gmail" placeholder="G-mail" required>
+                </div>
+                <div class="form-col">
+                    <input id="telefono" type="text" name="Telefono" placeholder="Telefono" required>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="modalidad" name="Modalidad" required class="form-input"
+                            onchange="actualizarCursos()">
+                            <option value="Modalidad" disabled selected hidden>Modalidad</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Virtual">Virtual</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="curso" name="Curso" required class="form-input">
+                            <option value="Curso" disabled selected hidden>Curso</option>
+                            <option value="Presencial">Python 1</option>
+                            <option value="Virtual">Python 2</option>
+                            <option value="Presencial">Desarrollo Web 1</option>
+                            <option value="Presencial">Desarrollo Web 2</option>
+                            <option value="Presencial">Mecanica Automotor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="comision" name="Comision" required class="form-input">
+                            <option value="" disabled selected hidden>Comision</option>
+                            <option value="Python1_Presencial">Martes 16:30 - 18:00</option>
+                            <option value="python2_Virtual_">Miercoles 19:00 - 20:30</option>
+                            <option value="Python1_Presencial">Jueves 16:30 - 18:00</option>
+                            <option value="Web1_Presencial">Viernes 16:30 - 18:00</option>
+                            <option value="Web2_presencial">Miercoles 16:30 - 18:00</option>
+                            <option value="Mecanica_Presencial">Sabados 10:00 - 11:30</option>
+                            <option value="Mecanica_Presencial">Miercoles 16:30 - 18:00</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label class="first_class">Inicio: </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="checkbox-container">
+                        <label class="checkbox-label" for="acepta">Los datos ingresados corresponden al
+                            estudiante </label required>
+                    </div>
+                </div>
+                <div class="form-coll">
+                    <button id="enviar" type="submit" value="Submit" onclick="redirigir()">Inscribirme</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        function redirigir() {
+            window.location.href = './Metodo_de_pago.html';
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var checkboxLabel = document.querySelector('.checkbox-label');
+            checkboxLabel.addEventListener('click', function () {
+                this.classList.toggle('checked');
+            });
+        });
+
+        function actualizarCursos() {
+            var modalidadSelect = document.getElementById("modalidad");
+            var cursoSelect = document.getElementById("curso");
+            var comisionSelect = document.getElementById("comision");
+
+            var modalidadSeleccionada = modalidadSelect.value;
+
+            cursoSelect.innerHTML = '<option value="" disabled selected hidden>Curso</option>';
+            comisionSelect.innerHTML = '<option value="" disabled selected hidden>Comision</option>';
+
+            if (modalidadSeleccionada === "Presencial") {
+                agregarOpcion(cursoSelect, "Python 1", "Python 1");
+                agregarOpcion(cursoSelect, "Desarrollo Web 1", "Desarrollo Web 1");
+                agregarOpcion(cursoSelect, "Mecanica Automotor", "Mecanica Automotor");
+            } else if (modalidadSeleccionada === "Virtual") {
+                agregarOpcion(cursoSelect, "Python 2", "Python 2");
+            }   
+            cursoSelect.addEventListener("change", function () {
+                var cursoSeleccionado = cursoSelect.value;
+                if (modalidadSeleccionada === "Presencial") {
+                    comisionSelect.innerHTML = '<option value="" disabled selected hidden>Comision</option>';
+                    if (cursoSeleccionado === "Python 1") {
+                        agregarOpcion(comisionSelect, "Inicio: 14/05/2024 Martes 16:30 - 18:00", "Inicio: 14/05/2024 Martes 16:30 - 18:00");
+                        agregarOpcion(comisionSelect, "Inicio: 15/05/2024 Miercoles 16:30 - 18:00", "Inicio: 15/05/2024 Miercoles 16:30 - 18:00");
+                    }
+                    else if (cursoSeleccionado === "Desarrollo Web 1") {
+                        agregarOpcion(comisionSelect, "Inicio: 17/05/2024 Viernes 16:30 - 18:00", "Inicio: 17/05/2024 Viernes 16:30 - 18:00");
+                    }
+                    else if (cursoSeleccionado === "Mecanica Automotor") {
+                        agregarOpcion(comisionSelect, "Inicio: 16/05/2024 Jueves 16:30 - 18:00", "Inicio: 16/05/2024 Jueves 16:30 - 18:00");
+                        agregarOpcion(comisionSelect, "Inicio: 18/05/2024 Sabados 10:00 - 11:30", "Inicio: 18/05/2024 Sabados 10:00 - 11:30");
+                    }
+                } else if (modalidadSeleccionada === "Virtual") {
+                    if (cursoSeleccionado === "Python 2") {
+                        agregarOpcion(comisionSelect, "Inicio: 15/05/2024 Miercoles 19:30 - 21:00", "Inicio: 15/05/2024 Miercoles 19:30 - 21:00");
+                    }
+                }
+            });
+            function agregarOpcion(select, valor, texto) {
+                var opcion = document.createElement("option");
+                opcion.value = valor;
+                opcion.text = texto;
+                select.add(opcion);
+            }
+        }
+        actualizarCursos();
+    </script>
+
+
+</body>
+
+</html>

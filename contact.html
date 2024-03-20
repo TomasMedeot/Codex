@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <img onclick="window.location.href='index.html'" src="images/LogoCodex.png" alt="">
+        <div class="navigation">
+            <ul>
+                <i id="menu-close" class="fas fa-times"></i>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="course.html">Cursos</a></li>
+                <li><a href="about.html">Nosotros</a></li>
+                <li><a href="contact.html" class="active">Contacto</a></li>
+                <li><a href="https://bit.ly/3SV5qwV" target="_blank">WhatsApp</a></li>
+            </ul>
+            <img id="menu-btn" src="images/menu.png" alt="">
+        </div>
+    </nav>
+    <section id="about-home">
+        <h2>Contactanos!</h2>
+    </section>
+
+    <section id="contact">
+        <div class="getin">
+            <h2></h2>
+
+            <div class="getin-details">
+                <h3>Telefono</h3>
+                <div>
+                    <i class="fas fa-phone-alt get"></i>
+                    <p>(+54) 3512681910</p>
+                </div>
+                <h3>Gmail</h3>
+                <div>
+                    <i class="fal fa-envelope-open-text get"></i>
+                    <p>codexlearningg@gmail.com</p>
+                </div>
+                <h3>Redes Sociales</h3>
+                <div class="pro-link">
+                    <a href="https://www.instagram.com/codexlearning" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/codexlearning" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form" id="form">
+            <form method="post" action="https://script.google.com/macros/s/AKfycbyuYJTzKsacdLepkJMBrwW7JAbZtr8atNrkpL7lFBOw/dev" class="contact-form">
+                <h4>Ponte en contacto!</h4>
+                <div class="form-row">
+                    <input id="name_2" type="text" name="Nombre" placeholder="Nombre" required>
+                    <input id="email" type="email" name="Gmail" placeholder="G-mail" required>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="curso" name="Curso" required class="form-input">
+                            <option value="" disabled selected hidden>Curso</option>
+                            <option value="">Python 1</option>
+                            <option value="">Python 2</option>
+                            <option value="">Desarrollo Web 1</option>
+                            <option value="">Desarrollo Web 2</option>
+                            <option value="">Mecanica Automotor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <textarea id="mensaje" name="Pregunta" maxlength="200" rows="4" required
+                        placeholder="Hola, quisiera consultar por.."></textarea>
+                </div>
+                <div class="form-col">
+                    <button id="enviar" type="submit" value="Submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+
+    <footer>
+        <div class="footer-col">
+            <h3>Buscar</h3>
+            <li>Inicio</li>
+            <li>Cursos</li>
+            <li>Nosotros</li>
+            <li>Contacto</li>
+        </div>
+        <div class="footer-col">
+            <h3>Subscribite</h3>
+            <p>Recibiras correos con novedades!</p>
+            <div class="subscribe">
+                <input type="text" name="" placeholder="Direccion de correo" id="">
+                <a class="yellow" href="#">Go!</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="pro-link">
+                <a href="https://www.instagram.com/codexlearning/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/codexlearning/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<script src="index.js"></script>
+
+</body>
+
+</html>
