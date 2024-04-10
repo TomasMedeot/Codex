@@ -58,26 +58,27 @@
         </div>
 
         <div class="form" id="form">
-            <form method="post" action="https://script.google.com/macros/s/AKfycbyuYJTzKsacdLepkJMBrwW7JAbZtr8atNrkpL7lFBOw/dev" class="contact-form">
+            <form id="info" method="post" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSe8ZVdKRTwIOAS4ylJoFHoyLIyPvzIoVli0DaRSL8-A9dqO9w/formResponse" class="contact-form">
                 <h4>Ponte en contacto!</h4>
                 <div class="form-row">
-                    <input id="name_2" type="text" name="Nombre" placeholder="Nombre" required>
-                    <input id="email" type="email" name="Gmail" placeholder="G-mail" required>
+                    <input id="nombre" name="entry.1474293252" type="text" placeholder="Nombre" required>
+                    <input id="email" name="entry.1643615538" type="email" placeholder="Email" required>
                 </div>
                 <div class="form-col">
                     <div class="select-wrapper">
-                        <select id="curso" name="Curso" required class="form-input">
+                        <select id="curso" name="Curso" required class="form-input" id="curso">
                             <option value="" disabled selected hidden>Curso</option>
-                            <option value="">Python 1</option>
-                            <option value="">Python 2</option>
-                            <option value="">Desarrollo Web 1</option>
-                            <option value="">Desarrollo Web 2</option>
-                            <option value="">Mecanica Automotor</option>
+                            <option value="Python 1">Python 1</option>
+                            <option value="Python 2">Python 2</option>
+                            <option value="Desarrollo Web 1">Desarrollo Web 1</option>
+                            <option value="Desarrollo Web 2">Desarrollo Web 2</option>
+                            <option value="Mecanica Automotor">Mecanica Automotor</option>
                         </select>
                     </div>
                 </div>
+                <input type="hidden" id="cursoSeleccionadoHidden" name="entry.2003128898">
                 <div class="form-col">
-                    <textarea id="mensaje" name="Pregunta" maxlength="200" rows="4" required
+                    <textarea id="mensaje" name="entry.769523376" maxlength="200" rows="4" required
                         placeholder="Hola, quisiera consultar por.."></textarea>
                 </div>
                 <div class="form-col">
@@ -99,10 +100,10 @@
         <div class="footer-col">
             <h3>Subscribite</h3>
             <p>Recibiras correos con novedades!</p>
-            <div class="subscribe">
-                <input type="text" name="" placeholder="Direccion de correo" id="">
-                <a class="yellow" href="#">Go!</a>
-            </div>
+            <form id="miFormulario" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScK7ERhvRTqDRTySU1lrpmOwKM3TN-M1y0uDJ-4TXrFuawoqg/formResponse" method="Post">
+                <input type="email" name="entry.2136656804" value="" placeholder="Direccion de correo">
+                <button class="yellow" style="border: 0;" id="enviar" type="submit">Go</button>
+            </form>
         </div>
         <div class="copyright">
             <div class="pro-link">
@@ -116,8 +117,25 @@
         </div>
     </footer>
 
+<script>
+    document.getElementById("info").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var nombre = document.getElementById("nombre").value;
+        var email = document.getElementById("email").value;
+        var mensaje = document.getElementById("mensaje").value;
+        var selectElement = document.getElementById("curso");
+        var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+        var formData = new FormData();
+        formData.append('entry.1474293252', nombre);
+        formData.append('entry.1643615538', email);
+        formData.append('entry.769523376', mensaje);
+        formData.append('entry.2003128898', selectedOption);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe8ZVdKRTwIOAS4ylJoFHoyLIyPvzIoVli0DaRSL8-A9dqO9w/formResponse");
+        xhr.send(formData);
+        alert("Datos de contacto registrados");
+    });
+</script>
 <script src="index.js"></script>
-
 </body>
-
 </html>

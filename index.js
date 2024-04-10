@@ -1,34 +1,39 @@
-$("#menu-btn").click(function () {
-    $("nav .navigation ul").addClass("active");
-});
-$("#menu-close").click(function () {
-    $("nav .navigation ul").removeClass("active");
-});
 $(document).ready(function(){
-    $('.slick-carousel').slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 1500,
-    });
+  // Función para abrir el menú
+  $("#menu-btn").click(function () {
+    $("nav .navigation ul").addClass("active");
+  });
+  
+  // Función para cerrar el menú
+  $("#menu-close").click(function () {
+    $("nav .navigation ul").removeClass("active");
+  });
+  
+  // Inicialización del carrusel
+  $('.slick-carousel').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    responsive: [
+      {
+        breakpoint: 768, // Aplicar esta configuración en dispositivos con una anchura máxima de 767px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
 });
 
-let slideIndex = 0;
-const slides = document.querySelectorAll('.carousel li');
+document.getElementById("miFormulario").addEventListener("submit", function(event) {
+  event.preventDefault();
+  alert("Email registrado");
 
-function showSlide(index) {
-  if (index < 0) {
-    index = slides.length - 1;
-  } else if (index >= slides.length) {
-    index = 0;
-  }
-  slideIndex = index;
-  const offset = -slideIndex * 100 + '%';
-  document.querySelector('.carousel ul').style.transform = 'translateX(' + offset + ')';
-}
+  var formData = new FormData(this);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLScK7ERhvRTqDRTySU1lrpmOwKM3TN-M1y0uDJ-4TXrFuawoqg/formResponse");
+  xhr.send(formData);
 
-function moveSlide(n) {
-  showSlide(slideIndex + n);
-}
-
-showSlide(slideIndex);
+});

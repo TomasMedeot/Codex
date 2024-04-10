@@ -8,6 +8,7 @@
     <title>Codex</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -30,7 +31,7 @@
                 </div>
                 <div class="form-row">
                     <input id="document" type="text" name="Documento" placeholder="DNI" required>
-                    <input id="email" type="email" name="Gmail" placeholder="G-mail" required>
+                    <input id="email" type="email" name="Gmail" placeholder="Email" required>
                 </div>
                 <div class="form-col">
                     <input id="telefono" type="text" name="Telefono" placeholder="Telefono" required>
@@ -49,11 +50,6 @@
                     <div class="select-wrapper">
                         <select id="curso" name="Curso" required class="form-input">
                             <option value="Curso" disabled selected hidden>Curso</option>
-                            <option value="Presencial">Python 1</option>
-                            <option value="Virtual">Python 2</option>
-                            <option value="Presencial">Desarrollo Web 1</option>
-                            <option value="Presencial">Desarrollo Web 2</option>
-                            <option value="Presencial">Mecanica Automotor</option>
                         </select>
                     </div>
                 </div>
@@ -61,44 +57,37 @@
                     <div class="select-wrapper">
                         <select id="comision" name="Comision" required class="form-input">
                             <option value="" disabled selected hidden>Comision</option>
-                            <option value="Python1_Presencial">Martes 16:30 - 18:00</option>
-                            <option value="python2_Virtual_">Miercoles 19:00 - 20:30</option>
-                            <option value="Python1_Presencial">Jueves 16:30 - 18:00</option>
-                            <option value="Web1_Presencial">Viernes 16:30 - 18:00</option>
-                            <option value="Web2_presencial">Miercoles 16:30 - 18:00</option>
-                            <option value="Mecanica_Presencial">Sabados 10:00 - 11:30</option>
-                            <option value="Mecanica_Presencial">Miercoles 16:30 - 18:00</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div>
-                        <label class="first_class">Inicio: </label>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="pago" name="pago" required class="form-input">
+                            <option value="" disabled selected hidden>Método de pago</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="efectivo">Efectivo</option>
+                        </select>
                     </div>
                 </div>
+                <div class="form-roww">
+                    <div>
+                        <label id="inicio_label" class="date_class"></label>
+                    </div>
+                </div>
+               
                 <div class="form-row">
                     <div class="checkbox-container">
-                        <label class="checkbox-label" for="acepta">Los datos ingresados corresponden al
-                            estudiante </label required>
+                        <input type="checkbox" id="acepta" class="checkbox-input">
+                        <label class="checkbox-label" for="acepta">Los datos ingresados corresponden al <span class="highlight"> ESTUDIANTE</span></label>
                     </div>
-                </div>
+                </div>             
                 <div class="form-coll">
-                    <button id="enviar" type="submit" value="Submit" onclick="redirigir()">Inscribirme</button>
+                    <button id="enviar" type="submit" value="Submit" onclick="redirigir(event)">Inscribirme</button>
                 </div>
             </form>
         </div>
     </section>
     <script>
-        function redirigir() {
-            window.location.href = './Metodo_de_pago.html';
-        }
-        document.addEventListener("DOMContentLoaded", function () {
-            var checkboxLabel = document.querySelector('.checkbox-label');
-            checkboxLabel.addEventListener('click', function () {
-                this.classList.toggle('checked');
-            });
-        });
-
         function actualizarCursos() {
             var modalidadSelect = document.getElementById("modalidad");
             var cursoSelect = document.getElementById("curso");
@@ -111,43 +100,197 @@
 
             if (modalidadSeleccionada === "Presencial") {
                 agregarOpcion(cursoSelect, "Python 1", "Python 1");
-                agregarOpcion(cursoSelect, "Desarrollo Web 1", "Desarrollo Web 1");
+                agregarOpcion(cursoSelect, "Desarrollo Web", "Desarrollo Web");
+                agregarOpcion(cursoSelect, "Diseño Web", "Diseño Web");
                 agregarOpcion(cursoSelect, "Mecanica Automotor", "Mecanica Automotor");
             } else if (modalidadSeleccionada === "Virtual") {
                 agregarOpcion(cursoSelect, "Python 2", "Python 2");
-            }   
+            }
             cursoSelect.addEventListener("change", function () {
                 var cursoSeleccionado = cursoSelect.value;
                 if (modalidadSeleccionada === "Presencial") {
                     comisionSelect.innerHTML = '<option value="" disabled selected hidden>Comision</option>';
                     if (cursoSeleccionado === "Python 1") {
-                        agregarOpcion(comisionSelect, "Inicio: 14/05/2024 Martes 16:30 - 18:00", "Inicio: 14/05/2024 Martes 16:30 - 18:00");
-                        agregarOpcion(comisionSelect, "Inicio: 15/05/2024 Miercoles 16:30 - 18:00", "Inicio: 15/05/2024 Miercoles 16:30 - 18:00");
-                    }
-                    else if (cursoSeleccionado === "Desarrollo Web 1") {
-                        agregarOpcion(comisionSelect, "Inicio: 17/05/2024 Viernes 16:30 - 18:00", "Inicio: 17/05/2024 Viernes 16:30 - 18:00");
+                        agregarOpcion(comisionSelect, "Miercoles 16:30 - 18:00", "Miercoles 16:30 - 18:00");
+                        agregarOpcion(comisionSelect, "Viernes 16:30 - 18:00", "Viernes 16:30 - 18:00");
+                    } 
+                    else if (cursoSeleccionado === "Desarrollo Web") {
+                        agregarOpcion(comisionSelect, "Martes 16:30 - 18:00", "Martes 16:30 - 18:00");
+                    } 
+                    else if (cursoSeleccionado === "Diseño Web") {
+                        agregarOpcion(comisionSelect, "Jueves 16:30 - 18:00", "Jueves 16:30 - 18:00");
                     }
                     else if (cursoSeleccionado === "Mecanica Automotor") {
-                        agregarOpcion(comisionSelect, "Inicio: 16/05/2024 Jueves 16:30 - 18:00", "Inicio: 16/05/2024 Jueves 16:30 - 18:00");
-                        agregarOpcion(comisionSelect, "Inicio: 18/05/2024 Sabados 10:00 - 11:30", "Inicio: 18/05/2024 Sabados 10:00 - 11:30");
+                        agregarOpcion(comisionSelect, "Jueves 16:30 - 18:00", "Jueves 16:30 - 18:00");
+                        agregarOpcion(comisionSelect, "Viernes 16:30 - 18:00", "Viernes 16:30 - 18:00");
+                   
                     }
                 } else if (modalidadSeleccionada === "Virtual") {
                     if (cursoSeleccionado === "Python 2") {
-                        agregarOpcion(comisionSelect, "Inicio: 15/05/2024 Miercoles 19:30 - 21:00", "Inicio: 15/05/2024 Miercoles 19:30 - 21:00");
+                        agregarOpcion(comisionSelect, "Miercoles 19:30 - 21:00", "Miercoles 19:30 - 21:00");
                     }
                 }
             });
-            function agregarOpcion(select, valor, texto) {
-                var opcion = document.createElement("option");
-                opcion.value = valor;
-                opcion.text = texto;
-                select.add(opcion);
-            }
+
+            comisionSelect.addEventListener("change", function () {
+                var seleccion = comisionSelect.value;
+                var gracias = obtenerMensajeDeAgradecimiento(seleccion);
+                document.getElementById("inicio_label").textContent = gracias;
+            });
         }
-        actualizarCursos();
+
+        function obtenerMensajeDeAgradecimiento(comisionSeleccionada) {
+            var mensajesDeAgradecimiento = {
+                "Martes 16:30 - 18:00": "Inicio: 04/06/2024",
+                "Miercoles 16:30 - 18:00": "Inicio: 05/06/2024",
+                "Miercoles 19:30 - 21:00": "Inicio: 05/06/2024",
+                "Jueves 16:30 - 18:00": "Inicio: 06/06/2024",
+                "Viernes 16:30 - 18:00": "Inicio: 07/06/2024",
+            };
+            return mensajesDeAgradecimiento[comisionSeleccionada] || "Gracias";
+        }
+
+        function agregarOpcion(select, valor, texto) {
+            var opcion = document.createElement("option");
+            opcion.value = valor;
+            opcion.text = texto;
+            select.add(opcion);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkbox = document.getElementById('acepta');
+            const checkboxLabel = document.querySelector('.checkbox-container label.checkbox-label');
+
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    checkboxLabel.classList.add('checked');
+                } else {
+                    checkboxLabel.classList.remove('checked');
+                }
+            });
+        });
+
+        function redirigir(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+
+            var nombre = document.getElementById("name_1").value;
+            var apellido = document.getElementById("name_2").value;
+            var documento = document.getElementById("document").value;
+            var email = document.getElementById("email").value;
+            var telefono = document.getElementById("telefono").value;
+
+            var selectElement = document.getElementById("modalidad");
+            var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+
+            var selectElement1 = document.getElementById("curso");
+            var selectedOption1 = selectElement1.options[selectElement1.selectedIndex].text;
+
+            var selectElement2 = document.getElementById("comision");
+            var selectedOption2 = selectElement2.options[selectElement2.selectedIndex].text;
+
+            var selectElement3 = document.getElementById("pago");
+            var selectedOption3 = selectElement3.options[selectElement3.selectedIndex].text;
+
+            var formData = new FormData();
+            formData.append('entry.1474293252', nombre);
+            formData.append('entry.1981407260', apellido);
+            formData.append('entry.375575277', documento);
+            formData.append('entry.793677973', email);
+            formData.append('entry.1643615538', telefono);
+
+            formData.append('entry.1567699007', selectedOption);
+            formData.append('entry.2003128898', selectedOption1);
+            formData.append('entry.769523376', selectedOption2);
+            formData.append('entry.987233512', selectedOption3);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeuj3ACgTz1XnQ6B5rzjI3r49uXjWh_NOsePsQIFAOnopnkmA/formResponse");
+            xhr.send(formData);
+
+
+            // Obtener los elementos de los campos
+            var nombre1 = document.getElementById("name_1").value;
+            var nombre2 = document.getElementById("name_2").value;
+            var documento = document.getElementById("document").value;
+            var email = document.getElementById("email").value;
+            var telefono = document.getElementById("telefono").value;
+            var modalidad = document.getElementById("modalidad").value;
+            var curso = document.getElementById("curso").value;
+            var comision = document.getElementById("comision").value;
+            var metodoPago = document.getElementById("pago").value;
+
+            // Mostrar mensaje de éxito con SweetAlert2 y redirigir a WhatsApp
+            Swal.fire({
+                icon: 'success',
+                title: 'Inscripción exitosa',
+                html: 'Nombre: ' + nombre1 + '<br>' +
+                    'Apellido: ' + nombre2 + '<br>' +
+                    'DNI: ' + documento + '<br>' +
+                    'Gmail: ' + email + '<br>' +
+                    'Teléfono: ' + telefono + '<br>' +
+                    'Modalidad: ' + modalidad + '<br>' +
+                    'Curso: ' + curso + '<br>' +
+                    'Comisión: ' + comision + '<br>' +
+                    'Método de Pago: ' + metodoPago + '<br><br>' +
+                    'Para finalizar la inscripción, debes ponerte en contacto mediante WhatsApp para poder confirmar la misma',
+                showCancelButton: false,
+                confirmButtonText: 'WhatsApp',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Construir el mensaje de WhatsApp
+                    var mensajeWhatsApp = encodeURIComponent(
+                        'Hola! adjunto los datos de la inscripcion!' + '\n' +
+                        'Nombre: ' + nombre1 + '\n' +
+                        'Apellido: ' + nombre2 + '\n' +
+                        'DNI: ' + documento + '\n' +
+                        'Gmail: ' + email + '\n' +
+                        'Teléfono: ' + telefono + '\n' +
+                        'Modalidad: ' + modalidad + '\n' +
+                        'Curso: ' + curso + '\n' +
+                        'Comisión: ' + comision + '\n' +
+                        'Método de Pago: ' + metodoPago
+                    );
+                    // Redirigir a WhatsApp
+                    window.location.href = 'https://api.whatsapp.com/send?phone=543512681910&text=' + mensajeWhatsApp;
+                }
+            });
+        }
+
+        document.getElementById("pago").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var nombre = document.getElementById("name_1").value;
+        var apellido = document.getElementById("name_2").value;
+        var documento = document.getElementById("document").value;
+        var email = document.getElementById("email").value;
+
+        var selectElement = document.getElementById("modalidad");
+        var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+
+        var selectElement1 = document.getElementById("curso");
+        var selectedOption1 = selectElement1.options[selectElement1.selectedIndex].text;
+
+        var selectElement2 = document.getElementById("comision");
+        var selectedOption2 = selectElement2.options[selectElement2.selectedIndex].text;
+
+        var selectElement3 = document.getElementById("pago");
+        var selectedOption3 = selectElement3.options[selectElement3.selectedIndex].text;
+
+        var formData = new FormData();
+        formData.append('entry.1474293252', nombre);
+        formData.append('entry.1981407260', apellido);
+        formData.append('entry.375575277', documento);
+        formData.append('entry.793677973', email);
+
+        formData.append('entry.1643615538', selectedOption);
+        formData.append('entry.1567699007', selectedOption1);
+        formData.append('entry.2003128898', selectedOption2);
+        formData.append('entry.769523376', selectedOption3);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeuj3ACgTz1XnQ6B5rzjI3r49uXjWh_NOsePsQIFAOnopnkmA/formResponse");
+        xhr.send(formData);
+        alert("Datos del Alumno registrados");
+    });
     </script>
-
-
 </body>
 
 </html>

@@ -45,25 +45,25 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
                             <span>(102)</span>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="courses">
-                <a href="./courses/course_dw1.html">
-                    <img src="images/b1.jpg" alt="">
+                <a href="./courses/course_py2.html">
+                    <img src="images/c5.jpg" alt="">
                     <div class="details">
-                        <h6>Desarrollo Web 1</h6>
-                        <span>4 Pagos sin interes!</span>
+                        <h6>Python 2</h6>
+                        <span>6 Pagos sin interes!</span>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
-                            <span>(42)</span>
+                            <span>(30)</span>
                         </div>
                     </div>
                 </a>
@@ -73,25 +73,6 @@
                     <img src="images/mecanica.jpg" alt="">
                     <div class="details">
                         <h6>Mecánica Automotor</h6>
-                        <span>4 Pagos sin interes!</span>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(50)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="course-box">
-            <div class="courses">
-                <a href="./courses/course_py2.html">
-                    <img src="images/py2.jpg" alt="">
-                    <div class="details">
-                        <h6>Python 2</h6>
                         <span>6 Pagos sin interes!</span>
                         <div class="star">
                             <i class="fas fa-star"></i>
@@ -99,16 +80,18 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <span>(50)</span>
+                            <span>(80)</span>
                         </div>
                     </div>
                 </a>
             </div>
+        </div>
+        <div class="course-box">
             <div class="courses">
-                <a href="./courses/course_dw2.html">
-                    <img src="images/b4.png" alt="">
+                <a href="./courses/course_dw1.html">
+                    <img src="images/b1.jpg" alt="">
                     <div class="details">
-                        <h6>Desarrollo Web 2</h6>
+                        <h6>Desarrollo Web</h6>
                         <span>4 Pagos sin interes!</span>
                         <div class="star">
                             <i class="fas fa-star"></i>
@@ -116,29 +99,28 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
-                            <span>(42)</span>
+                            <span>(52)</span>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="courses">
-                <a href="./courses/course_mecanica2.html">
-                    <img src="images/mecanica2.jpg" alt="">
+                <a href="./courses/course_diseñoWeb.html">
+                    <img src="images/manos-alto-angulo-sosteniendo-papel.jpg" alt="">
                     <div class="details">
-                        <h6>Mecánica Automotor 2</h6>
+                        <h6>Diseño Web</h6>
                         <span>4 Pagos sin interes!</span>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(50)</span>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(28)</span>
                         </div>
                     </div>
                 </a>
             </div>
-            
         </div>
 
     </section>
@@ -154,10 +136,10 @@
         <div class="footer-col">
             <h3>Subscribite</h3>
             <p>Recibiras correos con novedades!</p>
-            <div class="subscribe">
-                <input type="text" name="" placeholder="Direccion de correo" id="">
-                <a class="yellow" href="#">Go!</a>
-            </div>
+            <form id="miFormulario" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScK7ERhvRTqDRTySU1lrpmOwKM3TN-M1y0uDJ-4TXrFuawoqg/formResponse" method="Post">
+                <input type="email" name="entry.2136656804" value="" placeholder="Direccion de correo">
+                <button class="yellow" style="border: 0;" id="enviar" type="submit">Go</button>
+            </form>
         </div>
         <div class="copyright">
             <div class="pro-link">
@@ -171,7 +153,7 @@
         </div>
     </footer>
 
-
+    <script src="index.js"></script>
     <script>
         $("#menu-btn").click(function () {
             $("nav .navigation ul").addClass("active");
